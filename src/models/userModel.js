@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
       trim: true
-   }, // encrypted password
+   }, 
    
    creditScore: {
       type:Number,

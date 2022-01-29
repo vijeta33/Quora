@@ -39,9 +39,9 @@ const createAnswer = async (req, res) => {
             return res.status(404).send({ status: false, msg: "Id is not there in DB" })
         }
         if (quesn.askedBy == answeredBy) {
-           return res.status(400).send({ status: false, message: `You can't answer your own Question` })
+            return res.status(400).send({ status: false, message: `You can't answer your own Question` })
         }
-        
+
         let checkque = ObjectId.isValid(questionId);
         if (!checkque) {
             return res.status(400).send({ status: false, message: "Please provide a valid questionId " })
@@ -72,7 +72,7 @@ const getdetails = async (req, res) => {
         if (!SearchquestionId) {
             return res.status(404).send({ status: false, message: `Id not found` })
         }
-        const answer = await answerModel.find({ questionId: questionId , isDeleted: false}).sort({"createdAt":-1})
+        const answer = await answerModel.find({ questionId: questionId, isDeleted: false }).sort({ "createdAt": -1 })
         return res.status(200).send({ status: true, message: "Question with answers", data: answer })
     } catch (err) {
         return res.status(500).send({ status: false, message: err.message });
@@ -138,7 +138,7 @@ const deleteanswer = async (req, res) => {
         if (!isValid(questionId)) {
             return res.status(400).send({ status: false, message: "Please provide questionId field" });
         }
-    
+
         checkId = ObjectId.isValid(params)
         if (!checkId) {
             return res.status(400).send({ status: false, message: "Please provide a valid answerId " })
@@ -151,21 +151,16 @@ const deleteanswer = async (req, res) => {
         if (!checkque) {
             return res.status(400).send({ status: false, message: "Please provide a valid questionId " })
         }
-        const user = await userModel.findOne({ _id: userId }) 
+        const user = await userModel.findOne({ _id: userId })
         if (!user) {
-           return res.status(404).send({ status: false, message: `user not found` })
+            return res.status(404).send({ status: false, message: `user not found` })
         };
         const tokendetails = req.userId
         if (req.userId != tokendetails) {
             return res.status(400).send({ status: false, message: "Sorry you are not authorized to do this action" })
         }
         const deleteData = await answerModel.findOneAndUpdate({ answerId: params }, { isDeleted: true }, { new: true });
-        //return res.status(200).send({ status: true, message: "answer deleted successfullly.", data: deleteData })
-        if (deleteData) {
-            res.status(200).send({ status: true, msg: "This Answer has been succesfully deleted" })
-            return
-        }
-        return res.status(404).send({ status: false, message: `Answer already deleted not found` })
+        return res.status(200).send({ status: true, message: "answer deleted successfullly.", data: deleteData })
 
     } catch (err) {
         return res.status(500).send({ status: false, message: "Something went wrong", Error: err.message })

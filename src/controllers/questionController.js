@@ -58,15 +58,11 @@ const getQuestions = async (req, res) => {
         let { tag, sort } = querybody;
 
         if (isValid(tag)) {
-            const tagArr = tag.split(',')
-            filterQuery['tag'] = { $all: tagArr }
+            filterQuery['tag'] = tag
         }
 
         if (isValid(sort)) {
             sort = sort.toLowerCase();
-            if (!(["ascending", "descending"].includes(sort))) {
-                return res.status(400).send({ message: "Please give either ascending or descending" })
-            }
             if (sort == "ascending") {
                 var data = await questionModel.find(filterQuery).lean().sort({ createdAt: 1 })
             }
@@ -111,7 +107,7 @@ const getQuestionById = async (req, res) => {
         const answers = await answerModel.find({ questionId: questionId , isDeleted:false}).sort({ "createdAt": -1 })
         checkque = checkque.toObject()
         checkque['answers'] = answers
-        return res.status(200).send({ status: true, msg: 'successful details of answers ', data: answers })
+        return res.status(200).send({ status: true, msg: 'successful details of answers ', data: checkque })
 
     }
     catch (err) {
@@ -187,6 +183,7 @@ const deleteQuestion = async (req, res) => {
             return res.status(404).send({ status: false, message: `No question found ` })
         }
         const askedBy = findquestion.askedBy
+    
         if (req.userId != askedBy) {
             return res.status(400).send({ status: false, message: "Sorry you are not authorized to do this action" })
         }

@@ -15,7 +15,13 @@ const answerSchema = new mongoose.Schema({
         ref :'question',
         required: true
     }, 
+    isDeleted: {
+        type:Boolean,
+        default: false
+     },
+     
 }, { timestamps: true })
+
 
 module.exports = mongoose.model('answers', answerSchema)
 
