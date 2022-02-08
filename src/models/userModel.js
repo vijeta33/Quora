@@ -27,23 +27,24 @@ const userSchema = new mongoose.Schema({
 
    },
    phone: {
-         type: String,
-         unique: true,
-         trim: true
-     
-   }, 
+      type: String,
+      unique: true,
+      trim: true
+
+   },
    password: {
       type: String,
       required: true,
       trim: true
-   }, 
-   
+   },
+
    creditScore: {
-      type:Number,
-      required:true
+      type: Number,
+      required: true
    }
- 
-},  { timestamps: true })
+
+}, { timestamps: true })
+
 
 module.exports = mongoose.model('UserQuora', userSchema)
 

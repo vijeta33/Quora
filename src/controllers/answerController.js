@@ -12,7 +12,6 @@ const isValid = function (value) {
     return true;
 }
 
-
 const createAnswer = async (req, res) => {
     try {
         let userBody = req.body
@@ -60,6 +59,7 @@ const createAnswer = async (req, res) => {
         return res.status(500).send({ status: false, msg: err.message })
     }
 }
+
 
 const getdetails = async (req, res) => {
     try {
@@ -123,6 +123,7 @@ const updateanswer = async (req, res) => {
         return res.status(500).send({ status: false, msg: err.message })
     }
 }
+
 
 const deleteanswer = async (req, res) => {
     try {

@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const ObjectId = require('mongoose').Types.ObjectId;
 const validator = require("email-validator")
 
+
 const isValid = function (value) {
     if (typeof value === 'undefined' || value === null) return false
     if (typeof value === 'string' && value.length === 0) return false

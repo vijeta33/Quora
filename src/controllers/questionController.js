@@ -117,8 +117,6 @@ const getQuestionById = async (req, res) => {
 
 }
 
-
-
 const updatequestion = async (req, res) => {
     try {
         const params = req.params.questionId;
@@ -166,9 +164,6 @@ const updatequestion = async (req, res) => {
     }
 }
 
-
-
-
 const deleteQuestion = async (req, res) => {
     try {
 
@@ -194,5 +189,7 @@ const deleteQuestion = async (req, res) => {
         return res.status(500).send({ status: false, message: "Something went wrong", Error: err.message })
     }
 }
+
+
 
 module.exports = { createquestion, updatequestion, deleteQuestion, getQuestionById, getQuestions }

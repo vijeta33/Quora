@@ -11,8 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer().any())
 
 
-
-
 const mongoose = require('mongoose');
 const { response } = require('express');
 
@@ -25,3 +23,4 @@ app.use('/', route);
 app.listen(process.env.PORT || 3000, function () {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
 });
+

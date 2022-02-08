@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const answerSchema = new mongoose.Schema({
+    
     answeredBy: {
         type: mongoose.Schema.Types.ObjectId, 
         ref : 'UserQuora', 

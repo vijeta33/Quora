@@ -5,6 +5,7 @@ In this project we are changing how we send token with a request. Instead of usi
 Phase 
 
 FEATURE I - User
+
 Models
 User Model
 { 
@@ -44,6 +45,7 @@ On error - Return a suitable error message with a valid HTTP status code. The re
 }
 
 POST /login
+
 Allow an user to login with their email and password.
 On a successful login attempt return the userId and a JWT token containing the userId, exp, iat.
 You should also return userId in addition to the JWT token. Refer the example below
@@ -110,6 +112,7 @@ Note: Refer the following links to explore brypt and form-data Bcrypt
 Send form-data
 
 FEATURE II - Question
+
 Models
 question Model
 { 
@@ -249,7 +252,7 @@ question
 }
 answer
 {
-  ansnweredBy : ObjectId("88abc190ef0288abc190ef55"),
+  answeredBy : ObjectId("88abc190ef0288abc190ef55"),
   questionId : ObjectId("88abc190ef0288abc190ef35"),
   text: 'from my point of view',
   createdAt: "2021-09-17T04:25:07.803Z",
